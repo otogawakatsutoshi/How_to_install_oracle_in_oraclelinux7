@@ -1,7 +1,8 @@
 # How_to_install_oracle_in_oraclelinux
 
 ```shell
-# experiment in oracle linux 8
+# experiment in oracle linux8
+
 
 # silent install oracle database.
 mkdir /xe_logs 
@@ -19,24 +20,12 @@ sed -i 's/LISTENER_PORT=/LISTENER_PORT=1521/' /etc/sysconfig/oracle-xe-18c.conf
 echo "startup;" | sqlplus / as sysdba
 launchctl start
 ```
-# How to use these scripts
-this project has vagrant and packer environment.
-
-## vagrant
+# example script
+this project has Vagrantfile.
 ```shell
-# you want to create vagrant environment
-cd vagrant
 vagrant up
 ```
 oracle-fedora environment is being launch.
-
-## packer
-```shell
-# you want to create vagrant box dependent virtualbox.
-cd packer
-packer build --only=virtualbox-iso fedora.json
-```
-output to *output-virtualbox-iso*
 
 # install sample schemas
 
@@ -50,4 +39,20 @@ enable_sampleschema
 
 # if you uninstall schema, execute below function
 disable_sampleschema
+```
+
+# if you want to create vagrant box from vagrant file.
+
+```shell
+# stop vagrant environment
+vagrant halt
+
+# search virtualbox environment.
+ls -1 ~/VirtualBox\ VMs/
+
+# packaging your vagrant virtualbox environment. 
+vagrant package --base <yourvirtualbox_environment_name> --output oraclelinux8-oracle-xe-18.box
+
+# add box
+vagrant box add localhost/oraclelinux8-oracle-xe-18 oraclelinux8-oracle-xe-18.box
 ```

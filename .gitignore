@@ -1,0 +1,3 @@
+.vagrant
+middleware
+!/middleware/.gitignore

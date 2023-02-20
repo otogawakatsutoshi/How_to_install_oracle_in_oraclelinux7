@@ -12,15 +12,15 @@ Vagrant.configure("2") do |config|
   
     # Every Vagrant development environment requires a box. You can search for
     # boxes at https://vagrantcloud.com/search.
-    config.vm.box = "oraclelinux/8"
+    config.vm.box = "oraclelinux/7"
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json"
+    config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
 
     # dont set ssh key, if you create vagrant box from this container.
     # this config is being used, firtst time you create and launch container.
-    config.ssh.insert_key = false
+    # config.ssh.insert_key = false
 
     # Disable automatic box update checking. If you disable this, then
     # boxes will only be checked for updates when the user runs
@@ -79,5 +79,5 @@ Vagrant.configure("2") do |config|
     # documentation for more information about their specific syntax and use.
 
     # this script initial script,this script run only fitst time vagrant up.
-    config.vm.provision "shell", path: "../provision.sh"
+    # config.vm.provision "shell", path: "../provision.sh"
 end
