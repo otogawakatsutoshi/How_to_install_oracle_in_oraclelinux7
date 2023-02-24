@@ -1,5 +1,16 @@
 # How_to_install_oracle_in_oraclelinux
 
+```powershell
+vagrant up --provider hyperv
+```
+
+administrative privileges. This is a limitation of Hyper-V itself.
+
+```powershell
+Add-LocalGroupMember -Group "Hyper-V Administrators" -Member science
+```
+
+
 ```shell
 # experiment in oracle linux8
 

@@ -12,11 +12,12 @@ Vagrant.configure("2") do |config|
   
     # Every Vagrant development environment requires a box. You can search for
     # boxes at https://vagrantcloud.com/search.
-    config.vm.box = "oraclelinux/7"
+    # config.vm.box = "oraclelinux/7"
+    config.vm.box = "generic/oracle7"
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
+    # config.vm.box_url = "https://oracle.github.io/vagrant-projects/boxes/oraclelinux/7.json"
 
     # dont set ssh key, if you create vagrant box from this container.
     # this config is being used, firtst time you create and launch container.
@@ -65,10 +66,15 @@ Vagrant.configure("2") do |config|
     #
     config.vm.provider "virtualbox" do |vb|
       # Display the VirtualBox GUI when booting the machine
-      # vb.gui = true
+      vb.gui = true
 
       # Customize the amount of memory on the VM:
-        vb.memory = "2048"
+        vb.memory = "8192"
+    end
+
+    config.vm.provider "hyperv" do |hv|
+      config.vm.synced_folder ".", "/vagrant", type: "smb"
+      hv.maxmemory = "8192"
     end
     #
     # View the documentation for the provider you are using for more
@@ -79,5 +85,8 @@ Vagrant.configure("2") do |config|
     # documentation for more information about their specific syntax and use.
 
     # this script initial script,this script run only fitst time vagrant up.
-    # config.vm.provision "shell", path: "../provision.sh"
+    # config.vm.provision "shell", path: "./provision.sh"
+    # guiの場合は手動でOUIを使ってインストールする。
+    # 今現在はOUIでインストールする方が主流のはず。
+    config.vm.provision "shell", path: "./gui.sh"
 end
